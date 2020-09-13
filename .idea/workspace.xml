@@ -21,11 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="57d7d4a4-2f69-4626-9d86-35e1d6353046" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/PizzaCard.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/PizzaCard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ShowPizzas.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/PizzaList.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layout/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/livewire/pizza-card.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/pizza-card.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/show-pizzas.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/pizza-list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/pizza-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/pizza-list.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +195,7 @@
       <option name="presentableId" value="Default" />
       <updated>1599990480250</updated>
       <workItem from="1599990482996" duration="11827000" />
-      <workItem from="1600004564060" duration="11716000" />
+      <workItem from="1600004564060" duration="13251000" />
     </task>
     <task id="LOCAL-00001" summary="Add livewire, models, factories, migrations">
       <created>1600005304305</created>
@@ -213,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600014751474</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Separate pizza-card and pizza-list">
+      <created>1600017820515</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600017820515</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,7 +238,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add livewire, models, factories, migrations" />
     <MESSAGE value=":hammer: Add dynamic topping factor" />
-    <option name="LAST_COMMIT_MESSAGE" value=":hammer: Add dynamic topping factor" />
+    <MESSAGE value="Separate pizza-card and pizza-list" />
+    <option name="LAST_COMMIT_MESSAGE" value="Separate pizza-card and pizza-list" />
   </component>
   <component name="WindowStateProjectService">
     <state x="644" y="296" width="622" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600000093287">
@@ -260,10 +266,14 @@
       <screen x="0" y="27" width="1920" height="935" />
     </state>
     <state x="449" y="129" width="1022" height="737" key="SettingsEditor/0.27.1920.935@0.27.1920.935" timestamp="1600004497866" />
-    <state x="555" y="230" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1600014753039">
+    <state x="555" y="230" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1600017821818">
       <screen x="0" y="27" width="1920" height="935" />
     </state>
-    <state x="555" y="230" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.935@0.27.1920.935" timestamp="1600014753039" />
+    <state x="555" y="230" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.935@0.27.1920.935" timestamp="1600017821818" />
+    <state x="215" y="69" width="1662" height="814" key="find.popup" timestamp="1600017794210">
+      <screen x="0" y="27" width="1920" height="935" />
+    </state>
+    <state x="215" y="69" width="1662" height="814" key="find.popup/0.27.1920.935@0.27.1920.935" timestamp="1600017794210" />
     <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1600017507287">
       <screen x="0" y="27" width="1920" height="935" />
     </state>
