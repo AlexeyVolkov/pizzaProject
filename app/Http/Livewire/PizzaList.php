@@ -11,18 +11,19 @@ use App\Models\PizzaSize;
 use App\Models\PizzaTopping;
 use Livewire\Component;
 
-class ShowPizzas extends Component
+class PizzaList extends Component
 {
     public function render()
     {
         $viewAttributes = [
             'pizzas' => Pizza::paginate(8),
             'sizes' => PizzaSize::get(),
+            'toppings' => PizzaTopping::get(),
             'payments' => Payment::get(),
             'currencies' => Currency::all(),
             'delivery_methods' => DeliveryMethod::get()
         ];
 
-        return view('livewire.show-pizzas', $viewAttributes);
+        return view('livewire.pizza-list', $viewAttributes);
     }
 }

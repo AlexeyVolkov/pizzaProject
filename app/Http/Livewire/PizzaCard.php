@@ -2,38 +2,63 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Currency;
-use App\Models\DeliveryMethod;
-use App\Models\Payment;
 use App\Models\Pizza;
-use App\Models\PizzaSize;
-use App\Models\PizzaTopping;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class PizzaCard extends Component
 {
-    public $topping_id = 0;
-    public $price = 0;
-    public $pizza_id;
+    public $topping_id;
+    public $size_id;
+    public $price;
+    public $quantity = 1;
     public $pizza;
+    public $toppings;
+    public $sizes;
 
-    public function mount(Pizza $pizza)
+    public function mount(Pizza $pizza, Collection $toppings, Collection $sizes)
     {
         $this->pizza = $pizza;
         $this->price = $this->pizza->basic_price;
+        $this->toppings = $toppings;
+        $this->sizes = $sizes;
     }
 
     public function render()
     {
         return view('livewire.pizza-card', [
-            'pizza' => $this->pizza,
-            'toppings' => PizzaTopping::get()
+            'toppings' => $this->toppings,
+            'sizes' => $this->sizes
         ]);
     }
 
     public function updatedToppingId(int $value)
     {
-        $topping_factor = PizzaTopping::find($value)->price_factor;
-        $this->price = $this->pizza->basic_price * $topping_factor;
+        $this->topping_id = $value;
+        $this->updatePrice();
+    }
+
+    public function updatePrice()
+    {
+        $topping_factor = $this->toppings->find($this->topping_id)->price_factor ?? 1;
+        $size_factor = $this->sizes->find($this->size_id)->price_factor ?? 1;
+
+        $this->price =
+            $this->pizza->basic_price
+            * $topping_factor
+            * $size_factor
+            * $this->quantity;
+    }
+
+    public function updatedSizeId(int $value)
+    {
+        $this->size_id = $value;
+        $this->updatePrice();
+    }
+
+    public function updatedQuantity(int $value)
+    {
+        $this->quantity = $value;
+        $this->updatePrice();
     }
 }
