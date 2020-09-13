@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Pizza;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class PizzaFactory extends Factory
 {
@@ -24,6 +24,7 @@ class PizzaFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
+            'image_path' => Storage::url('images/buffalo-chicken-pizza.png'),
             'description' => $this->faker->sentence,
             'basic_price' => $this->faker->randomFloat(2, 1, 65),
         ];

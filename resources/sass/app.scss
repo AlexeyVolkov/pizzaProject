@@ -4,3 +4,8 @@
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
+
+.card-img-top {
+  max-height: 12em;
+  object-fit: cover;
+}
