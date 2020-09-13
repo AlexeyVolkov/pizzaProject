@@ -17,12 +17,12 @@ class ShowPizzas extends Component
     {
         $viewAttributes = [
             'pizzas' => Pizza::paginate(8),
-            'toppings' => PizzaTopping::get(),
             'sizes' => PizzaSize::get(),
             'payments' => Payment::get(),
             'currencies' => Currency::all(),
-            'delivery_methods' => DeliveryMethod::get(),
+            'delivery_methods' => DeliveryMethod::get()
         ];
+
         return view('livewire.show-pizzas', $viewAttributes);
     }
 }

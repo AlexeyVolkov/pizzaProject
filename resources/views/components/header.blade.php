@@ -1,5 +1,5 @@
 <header id="top">
-    <div class="collapse bg-dark" id="navbarHeader">
+    <div class="collapse bg-dark" id="basket">
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-md-7 py-4">
@@ -30,9 +30,9 @@
                 </svg>
                 <strong>{{ $title }}</strong>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
-                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basket"
+                    aria-controls="basket" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-shopping-cart"></i>
             </button>
         </div>
     </div>
