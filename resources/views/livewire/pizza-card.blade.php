@@ -1,6 +1,6 @@
 <div class="col mb-4">
     <div class="card {{ $added ? 'border-secondary' : '' }}">
-        <form action="/" wire:submit.prevent="submit">
+        <form action="/" wire:submit.prevent="submit" id="pizza_form_{{ $pizza->id }}">
             <div class="card-header text-center">
                 {{ $pizza->name }}
             </div>
@@ -45,7 +45,6 @@
                     </div>
                     <div class="col-sm-12 col-md-8">
                         <button
-                                wire:click="submit"
                                 type="submit"
                                 class="btn btn-outline-primary btn-sm btn-block"
                                 {{ $added ? 'disabled' : '' }}

@@ -68,10 +68,12 @@ class PizzaCard extends Component
     public function submit(){
         $this->added = true;
         $this->button_message = __('Added');
+        $this->emit('addPizza');
     }
 
     public function resetSubmit(){
         $this->added = false;
         $this->button_message = __('Add');
+        $this->emit('removePizza');
     }
 }

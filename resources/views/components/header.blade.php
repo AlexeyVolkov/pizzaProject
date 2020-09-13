@@ -30,10 +30,7 @@
                 </svg>
                 <strong>{{ $title }}</strong>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basket"
-                    aria-controls="basket" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-shopping-cart"></i>
-            </button>
+            <livewire:basket-button/>
         </div>
     </div>
 </header>
