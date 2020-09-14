@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\OrderedPizzaController;
 use App\Models\Pizza;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class PizzaCard extends Component
 {
-    public $topping_id;
-    public $size_id;
+    public $topping_id = 1;
+    public $size_id = 1;
     public $price;
     public $quantity = 1;
     public $pizza;
@@ -65,13 +66,23 @@ class PizzaCard extends Component
         $this->updatePrice();
     }
 
-    public function submit(){
+    public function submit()
+    {
         $this->added = true;
         $this->button_message = __('Added');
         $this->emit('addPizza');
+        OrderedPizzaController::createNewOrderedPizza(
+            session('order_id'),
+            $this->pizza->id,
+            $this->topping_id,
+            $this->size_id,
+            $this->quantity
+        );
+
     }
 
-    public function resetSubmit(){
+    public function resetSubmit()
+    {
         $this->added = false;
         $this->button_message = __('Add');
         $this->emit('removePizza');

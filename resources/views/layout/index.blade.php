@@ -4,7 +4,7 @@
     <main role="main">
         <div class="album py-5 bg-light">
             <div class="container">
-                @livewire('pizza-list')
+                <livewire:pizza-list/>
             </div>
         </div>
 

@@ -6,6 +6,7 @@ use Livewire\Component;
 
 class BasketButton extends Component
 {
+    public $pizza_number = 0;
     public $clicked = false;
 
     protected $listeners = ['addPizza', 'removePizza'];

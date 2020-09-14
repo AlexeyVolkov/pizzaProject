@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PizzaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +14,4 @@ use App\Http\Controllers\PizzaController;
 |
 */
 
-Route::get('/', [PizzaController::class, 'index'])->name('home');
+Route::get('/', [PageController::class, 'index'])->name('home');
