@@ -9,8 +9,8 @@
                 type="button"
                 class="btn btn-dark btn-sm"
         >
+            <i class="fas fa-trash-alt"></i>
             {{ __('Remove') }} {{ $pizza->name }} {{ __(' from basket') }}
-            <i class="fas fa-times"></i>
         </button>
     </td>
 </tr>

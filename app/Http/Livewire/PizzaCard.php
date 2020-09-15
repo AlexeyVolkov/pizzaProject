@@ -16,7 +16,6 @@ class PizzaCard extends Component
     public $pizza;
     public $toppings;
     public $sizes;
-    public $button_message;
 
     public function mount(Pizza $pizza, Collection $toppings, Collection $sizes)
     {
@@ -24,7 +23,6 @@ class PizzaCard extends Component
         $this->price = $this->pizza->basic_price;
         $this->toppings = $toppings;
         $this->sizes = $sizes;
-        $this->button_message = __('Add');
     }
 
     public function render()
@@ -67,8 +65,6 @@ class PizzaCard extends Component
 
     public function submit()
     {
-        $this->added = true;
-        $this->button_message = __('Added');
         $this->emit('addPizza');
         OrderedPizzaController::createOrderedPizza(
             session('order_id'),

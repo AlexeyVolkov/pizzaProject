@@ -8,8 +8,11 @@
             <div class="card-body">
                 <p class="card-text text-center">{{ $pizza->description }}</p>
                 <hr>
-                <div class="form-group">
-                    <select wire:model="size_id" class="form-control form-control-sm"
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <i class="input-group-text fas fa-ruler-combined"></i>
+                    </div>
+                    <select wire:model="size_id" class="form-control form-control-sm custom-select"
                             id="selectSize_{{ $pizza->id }}"
                             name="size"
                             title="{{ __('Pizza size') }}">
@@ -18,8 +21,11 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
-                    <select wire:model="topping_id" class="form-control form-control-sm"
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <i class="input-group-text fas fa-pepper-hot"></i>
+                    </div>
+                    <select wire:model="topping_id" class="form-control form-control-sm custom-select"
                             id="selectTize_{{ $pizza->id }}"
                             name="topping"
                             title="{{ __('Pizza topping') }}">
@@ -28,7 +34,10 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <i class="input-group-text fas fa-sort-numeric-up-alt""></i>
+                    </div>
                     <input wire:model="quantity" type="number" class="form-control form-control-sm"
                            id="inputQuantity_{{ $pizza->id }}"
                            name="quantity" placeholder="1" min="1" max="25" value="1"
@@ -43,10 +52,11 @@
                     <div class="col-sm-12 col-md-8">
                         <button
                                 type="submit"
-                                class="btn btn-outline-primary btn-sm btn-block"
+                                class="btn btn-outline-dark btn-sm btn-block"
+                                title="Add pizza to shopping cart"
                         >
-                            {{ $button_message }}
-                            <i class="fas fa-plus small"></i>
+                            <i class="fas fa-cart-plus"></i>
+                            {{ __('Add') }}
                         </button>
                     </div>
                 </div>

@@ -14,21 +14,23 @@ class PageController extends Controller
 {
     public function index(Request $request)
     {
-        $viewAttributes = [
-            'pizzas' => Pizza::paginate(8),
-            'toppings' => PizzaTopping::get(),
-            'sizes' => PizzaSize::get(),
-            'payments' => Payment::get(),
-            'currencies' => Currency::all(),
-            'delivery_methods' => DeliveryMethod::get(),
-        ];
+        $this->getOrderId($request);
 
-        // get Order
+        return view('layout.index');
+    }
+
+    private function getOrderId(Request $request)
+    {
         if (!$request->session()->has('order_id')) {
 
             $request->session()->put('order_id', OrderController::createNewOrder());
         }
+    }
 
-        return view('layout.index', $viewAttributes);
+    public function checkout(Request $request)
+    {
+        $this->getOrderId($request);
+
+        return view('layout.checkout');
     }
 }
