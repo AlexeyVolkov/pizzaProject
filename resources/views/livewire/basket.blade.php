@@ -1,17 +1,27 @@
-<div>
-    <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-muted">{{ __('Your cart') }}</span>
-        <span class="badge badge-secondary badge-pill">{{ $ordered_pizzas->count() }}</span>
-    </h4>
-    <ul class="list-group list-group-flush">
-        @forelse($ordered_pizzas as $ordered_pizza)
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{ $pizzas[$ordered_pizza->pizza_id]->name }}
-                <span class="badge badge-primary badge-pill">{{ $ordered_pizza->quantity }}</span>
-                <span class="text-muted">{{ $pizzas[$ordered_pizza->pizza_id]->basic_price * $toppings[$ordered_pizza->topping_id]->price_factor * $sizes[$ordered_pizza->size_id]->price_factor }}</span>
-            </li>
-        @empty
-            <p>No Pizzas yet</p>
-        @endforelse
-    </ul>
+<div class="table-responsive">
+    <table class="table table-dark table-hover ">
+        <caption>{{ __('Pizzas in basket') }}</caption>
+        <thead>
+        <tr>
+            <th scope="col">Pizza</th>
+            <th scope="col">Topping</th>
+            <th scope="col">Size</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($ordered_pizzas as $ordered_pizza)
+{{--            @dd($ordered_pizza)--}}
+            <livewire:basket-item
+                    :orderedPizza="$ordered_pizza"
+                    :test_me="4"
+                    :pizza="$pizzas[$ordered_pizza->pizza_id]"
+                    :topping="$toppings[$ordered_pizza->topping_id]"
+                    :size="$sizes[$ordered_pizza->size_id]"
+                    :key="$loop->index"
+            />
+        @endforeach
+        </tbody>
+    </table>
 </div>

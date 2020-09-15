@@ -2,28 +2,37 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Currency;
-use App\Models\Pizza;
-use App\Models\Customer;
-use App\Models\DeliveryMethod;
-use App\Models\Payment;
-use App\Models\PizzaSize;
-use App\Models\PizzaTopping;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
+use App\Services\PizzaRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PizzaList extends Component
 {
+    public Collection $toppings;
+    public Collection $payments;
+    public Collection $currencies;
+    public Collection $delivery_methods;
+    public Collection $sizes;
+
+    private $pizzaRepository;
+
+    public function mount(PizzaRepository $pizzaRepository)
+    {
+        $this->pizzaRepository = $pizzaRepository;
+
+        $this->sizes = $this->pizzaRepository->getPizzaSizes();
+        $this->toppings = $this->pizzaRepository->getPizzaToppings();
+        $this->payments = $this->pizzaRepository->getPayments();
+        $this->currencies = $this->pizzaRepository->getCurrencies();
+        $this->delivery_methods = $this->pizzaRepository->getDeliveryMethods();
+    }
+
     public function render()
     {
         $viewAttributes = [
-            'pizzas' => Pizza::paginate(8),
-            'sizes' => PizzaSize::get(),
-            'toppings' => PizzaTopping::get(),
-            'payments' => Payment::get(),
-            'currencies' => Currency::all(),
-            'delivery_methods' => DeliveryMethod::get()
+            'pizzas' => $this->pizzas = $this->pizzaRepository->getPizzasPaginate(8)
         ];
-
         return view('livewire.pizza-list', $viewAttributes);
     }
 }

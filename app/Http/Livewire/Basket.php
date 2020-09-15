@@ -2,55 +2,57 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Currency;
-use App\Models\DeliveryMethod;
 use App\Models\Order;
 use App\Models\OrderedPizza;
-use App\Models\Payment;
-use App\Models\Pizza;
-use App\Models\PizzaSize;
-use App\Models\PizzaTopping;
 use Livewire\Component;
+use Illuminate\Database\Eloquent\Collection;
+use App\Services\PizzaRepository;
 
 class Basket extends Component
 {
-    public $order_id;
-    public $viewAttributes;
+    public int $order_id;
+    public Collection $pizzas;
+    public Collection $toppings;
+    public Collection $payments;
+    public Collection $currencies;
+    public Collection $delivery_methods;
+    public Collection $sizes;
+    public Collection $ordered_pizzas;
 
     protected $listeners = ['addPizza', 'removePizza'];
+    private $pizzaRepository;
 
-    public function mount()
+    public function mount(PizzaRepository $pizzaRepository)
     {
+        $this->pizzaRepository = $pizzaRepository;
+
+        $this->pizzas = $this->pizzaRepository->getPizzas();
+        $this->sizes = $this->pizzaRepository->getPizzaSizes();
+        $this->toppings = $this->pizzaRepository->getPizzaToppings();
+        $this->payments = $this->pizzaRepository->getPayments();
+        $this->currencies = $this->pizzaRepository->getCurrencies();
+        $this->delivery_methods = $this->pizzaRepository->getDeliveryMethods();
         $this->order_id = Order::find(session('order_id'))->id;
+        $this->ordered_pizzas = OrderedPizza::where('order_id', $this->order_id)->get();
     }
 
     public function render()
     {
-        $this->updateViewAttributes();
-        return view('livewire.basket', $this->viewAttributes);
-    }
-
-    public function updateViewAttributes()
-    {
-        $ordered_pizzas = OrderedPizza::where('order_id', $this->order_id)->get();
-        $this->viewAttributes = [
-            'ordered_pizzas' => $ordered_pizzas,
-            'pizzas' => Pizza::get(),
-            'sizes' => PizzaSize::get(),
-            'toppings' => PizzaTopping::get(),
-            'payments' => Payment::get(),
-            'currencies' => Currency::all(),
-            'delivery_methods' => DeliveryMethod::get()
-        ];
+        return view('livewire.basket');
     }
 
     public function addPizza()
     {
-        $this->updateViewAttributes();
+        $this->updateOrderedPizzas();
+    }
+
+    public function updateOrderedPizzas()
+    {
+        $this->ordered_pizzas = OrderedPizza::where('order_id', $this->order_id)->get();
     }
 
     public function removePizza()
     {
-        $this->updateViewAttributes();
+        $this->updateOrderedPizzas();
     }
 }

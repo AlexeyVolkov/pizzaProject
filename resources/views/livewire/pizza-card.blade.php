@@ -1,5 +1,5 @@
 <div class="col mb-4">
-    <div class="card {{ $added ? 'border-secondary' : '' }}">
+    <div class="card">
         <form action="/" wire:submit.prevent="submit" id="pizza_form_{{ $pizza->id }}">
             <div class="card-header text-center">
                 {{ $pizza->name }}
@@ -12,8 +12,7 @@
                     <select wire:model="size_id" class="form-control form-control-sm"
                             id="selectSize_{{ $pizza->id }}"
                             name="size"
-                            title="{{ __('Pizza size') }}"
-                            {{ $added ? 'disabled' : '' }}>
+                            title="{{ __('Pizza size') }}">
                         @foreach ($sizes as $size)
                             <option value="{{ $size->id }}">{{ $size->name }}</option>
                         @endforeach
@@ -23,8 +22,7 @@
                     <select wire:model="topping_id" class="form-control form-control-sm"
                             id="selectTize_{{ $pizza->id }}"
                             name="topping"
-                            title="{{ __('Pizza topping') }}"
-                            {{ $added ? 'disabled' : '' }}>
+                            title="{{ __('Pizza topping') }}">
                         @foreach ($toppings as $topping)
                             <option value="{{ $topping->id }}">{{ $topping->name }}</option>
                         @endforeach
@@ -34,8 +32,7 @@
                     <input wire:model="quantity" type="number" class="form-control form-control-sm"
                            id="inputQuantity_{{ $pizza->id }}"
                            name="quantity" placeholder="1" min="1" max="25" value="1"
-                           title="{{ __('Quantity') }}"
-                            {{ $added ? 'disabled' : '' }}>
+                           title="{{ __('Quantity') }}">
                 </div>
             </div>
             <div class="card-footer text-muted">
@@ -47,22 +44,10 @@
                         <button
                                 type="submit"
                                 class="btn btn-outline-primary btn-sm btn-block"
-                                {{ $added ? 'disabled' : '' }}
                         >
                             {{ $button_message }}
                             <i class="fas fa-plus small"></i>
                         </button>
-
-                        @if ($added)
-                            <button
-                                    wire:click="resetSubmit"
-                                    type="reset"
-                                    class="btn btn-outline-primary btn-sm btn-block"
-                            >
-                                {{ __('Remove from basket') }}
-                                <i class="fas fa-times"></i>
-                            </button>
-                        @endif
                     </div>
                 </div>
             </div>

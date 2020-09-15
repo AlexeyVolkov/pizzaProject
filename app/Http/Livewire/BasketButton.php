@@ -2,14 +2,28 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Order;
+use App\Models\OrderedPizza;
 use Livewire\Component;
 
 class BasketButton extends Component
 {
-    public $pizza_number = 0;
-    public $clicked = false;
+    public int $pizza_number = 0;
+    public bool $clicked = false;
+    public int $order_id = 0;
 
     protected $listeners = ['addPizza', 'removePizza'];
+
+    public function mount()
+    {
+        $this->order_id = Order::find(session('order_id'))->id;
+        $this->updatePizzaNumber();
+    }
+
+    public function updatePizzaNumber()
+    {
+        $this->pizza_number = OrderedPizza::where('order_id', $this->order_id)->count();
+    }
 
     public function render()
     {
@@ -18,11 +32,11 @@ class BasketButton extends Component
 
     public function addPizza()
     {
-        $this->pizza_number++;
+        $this->updatePizzaNumber();
     }
 
     public function removePizza()
     {
-        $this->pizza_number--;
+        $this->updatePizzaNumber();
     }
 }
