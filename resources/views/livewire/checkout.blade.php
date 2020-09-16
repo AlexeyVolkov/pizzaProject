@@ -2,28 +2,41 @@
     <div class="col-md-4 order-md-2 mb-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill">3</span>
+            <span class="badge badge-secondary badge-pill">{{ $orderedPizzas->count() }}</span>
         </h4>
         <ul class="list-group mb-3">
-            @foreach($ordered_pizzas as $ordered_pizza)
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                    <h6 class="my-0">Product name</h6>
-                    <small class="text-muted">Brief description</small>
-                </div>
-                <span class="text-muted">$12</span>
-            </li>
+            @foreach($orderedPizzas as $ordered_pizza)
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">{{ $pizzas[$ordered_pizza->pizza_id]->name }}</h6>
+                        <small class="text-muted">
+                            {{ $toppings[$ordered_pizza->pizza_id]->name }},
+                            {{ $sizes[$ordered_pizza->pizza_id]->name }}
+                        </small>
+                    </div>
+                    <span class="text-muted">${{  $pizzas[$ordered_pizza->pizza_id]->basic_price * $toppings[$ordered_pizza->topping_id]->price_factor * $sizes[$ordered_pizza->size_id]->price_factor * $ordered_pizza->quantity }}</span>
+                </li>
             @endforeach
-            <li class="list-group-item d-flex justify-content-between bg-light">
-                <div class="text-success">
-                    <h6 class="my-0">Promo code</h6>
-                    <small>EXAMPLECODE</small>
-                </div>
-                <span class="text-success">-$5</span>
-            </li>
+            @if ('carryout' === $deliveryMethod)
+                <li class="list-group-item d-flex justify-content-between bg-light">
+                    <div class="text-success">
+                        <h6 class="my-0">{{ __('Carry out discount') }}</h6>
+                    </div>
+                    <span class="text-success"><i class="fas fa-tag mr-2"></i>-10% off</span>
+                </li>
+            @endif
+            @if ('delivery' === $deliveryMethod)
+                <li class="list-group-item d-flex justify-content-between bg-light">
+                    <div class="text-secondary">
+                        <h6 class="my-0">{{ __('Delivery') }}</h6>
+                        <small><i class="far fa-clock mr-2"></i>~ 20 min</small>
+                    </div>
+                    <span class="text-secondary">$10</span>
+                </li>
+            @endif
             <li class="list-group-item d-flex justify-content-between">
                 <span>Total (USD)</span>
-                <strong>$20</strong>
+                <strong>${{ $totalPrice }}</strong>
             </li>
         </ul>
 
