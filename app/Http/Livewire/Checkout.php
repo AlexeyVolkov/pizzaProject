@@ -10,11 +10,9 @@ use Livewire\Component;
 
 class Checkout extends Component
 {
-    public string $deliveryMethod = 'delivery';
     public string $name = '';
     public string $address = '';
     public string $comments = '';
-    public int $paymentId = 1;
     public Collection $payments;
     public Collection $orderedPizzas;
     public Order $order;
@@ -26,9 +24,9 @@ class Checkout extends Component
     public float $totalPrice;
 
     protected $rules = [
-        'name' => 'string',
-        'address' => 'exclude_if:deliveryMethod,carryout|required|min:6',
-        'comments ' => 'string',
+        'order.name' => 'string',
+        'order.address' => 'string|min:6',
+        'order.comments' => 'string'
     ];
 
     private $pizzaRepository;
@@ -53,26 +51,34 @@ class Checkout extends Component
         $this->totalPrice = 0;
         foreach ($this->orderedPizzas as $orderedPizza) {
             $this->totalPrice +=
-                $this->pizzas[$orderedPizza->pizza_id]->basic_price
-                * $this->toppings[$orderedPizza->topping_id]->price_factor
-                * $this->sizes[$orderedPizza->size_id]->price_factor
+                $this->pizzas->find($orderedPizza->pizza_id)->basic_price
+                * $this->toppings->find($orderedPizza->topping_id)->price_factor
+                * $this->sizes->find($orderedPizza->size_id)->price_factor
                 * $orderedPizza->quantity;
         }
-        $this->totalPrice *= $this->deliveryMethods[$this->order->delivery_method_id]->price_factor;
-        $this->totalPrice *= $this->payments[$this->order->payment_id]->price_factor;
+        $this->totalPrice *= $this->deliveryMethods->find($this->order->delivery_method_id)->price_factor;
+        $this->totalPrice *= $this->payments->find($this->order->payment_id)->price_factor;
+        $this->totalPrice = round($this->totalPrice, 2);
 
         return view('livewire.checkout');
     }
 
-    public function changeDeliveryMethod(string $method)
+    public function changeDeliveryMethod(int $methodId)
     {
-        switch ($method) {
-            case 'delivery':
-                $this->deliveryMethod = 'delivery';
-                break;
-            case 'carryout':
-                $this->deliveryMethod = 'carryout';
-                break;
-        }
+        $this->order->delivery_method_id = $this->deliveryMethods->find($methodId)->id;
+    }
+
+    public function changePaymentMethod(int $methodId)
+    {
+        $this->order->payment_id = $this->payments->find($methodId)->id;
+    }
+
+    public function checkout(){
+        $this->validate();
+
+        $this->order->is_confirmed = true;
+        $this->order->save();
+
+        return redirect()->route('orderConfirmed');
     }
 }

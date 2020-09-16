@@ -10,6 +10,7 @@
                 <i class="fas fa-pizza-slice mr-2"></i>
                 <strong>{{ $title }}</strong>
             </a>
+            <livewire:currency-switch/>
             <livewire:basket-button/>
         </div>
     </div>

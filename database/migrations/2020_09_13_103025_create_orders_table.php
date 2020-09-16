@@ -16,8 +16,11 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('address')->nullable();
             $table->foreignId('payment_id')->default(1);
             $table->foreignId('delivery_method_id')->default(1);
+            $table->foreignId('currency_id')->default(1);
             $table->text('comments')->nullable();
             $table->boolean('is_confirmed')->default(false);
             $table->timestamps();
@@ -35,6 +38,11 @@ class CreateOrdersTable extends Migration
             $table->foreign('delivery_method_id')
                 ->references('id')
                 ->on('delivery_methods')
+                ->onDelete('cascade');
+
+            $table->foreign('currency_id')
+                ->references('id')
+                ->on('currencies')
                 ->onDelete('cascade');
         });
     }

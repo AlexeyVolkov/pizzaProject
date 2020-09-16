@@ -54,7 +54,8 @@ class Basket extends Component
         $this->updateOrderedPizzas();
     }
 
-    public function checkout(){
-        return redirect()->to('/checkout');
+    public function checkout()
+    {
+        return redirect()->route('checkout');
     }
 }

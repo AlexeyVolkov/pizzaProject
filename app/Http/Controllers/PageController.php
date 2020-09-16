@@ -22,9 +22,9 @@ class PageController extends Controller
     private function getOrderId(Request $request)
     {
         if (!$request->session()->has('order_id')) {
-
             $request->session()->put('order_id', OrderController::createNewOrder());
         }
+
     }
 
     public function checkout(Request $request)
@@ -33,4 +33,12 @@ class PageController extends Controller
 
         return view('layout.checkout');
     }
+
+    public function orderConfirmed(Request $request)
+    {
+        $request->session()->forget('order_id');
+
+        return redirect()->route('home');
+    }
+
 }

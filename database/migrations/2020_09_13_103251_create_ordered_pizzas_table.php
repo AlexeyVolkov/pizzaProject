@@ -17,9 +17,9 @@ class CreateOrderedPizzasTable extends Migration
             $table->id();
             $table->foreignId('order_id');
             $table->foreignId('pizza_id');
-            $table->foreignId('size_id')->nullable();
-            $table->foreignId('topping_id')->nullable();
-            $table->integer('quantity')->default('1');
+            $table->foreignId('size_id')->default(1);
+            $table->foreignId('topping_id')->default(1);
+            $table->integer('quantity')->default(1);
             $table->timestamps();
 
             $table->foreign('order_id')

@@ -17,6 +17,7 @@ class CreateCurrenciesTable extends Migration
             $table->id();
             $table->string('name');
             $table->float('price_factor');
+            $table->string('icon');
             $table->timestamps();
         });
     }

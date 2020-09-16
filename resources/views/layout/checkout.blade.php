@@ -2,10 +2,16 @@
     <div class="py-5 bg-light">
         <div class="container">
             <div class="py-5 text-center">
-                <h2>
-                    <i class="fas fa-pizza-slice mr-2"></i>
-                    {{ __('Checkout form') }}
-                </h2>
+                <small>
+                    <a href="/" title="{{ __('Choose pizza') }}">
+                    <i class="fas fa-arrow-circle-left"></i>
+                    {{ __('Back to pizzas') }}
+                    </a>
+                </small>
+                <h1>
+                    <i class="fas fa-receipt"></i>
+                    {{ __('Checkout') }}
+                </h1>
             </div>
 
             <livewire:checkout/>
