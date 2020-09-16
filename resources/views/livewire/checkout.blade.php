@@ -5,6 +5,7 @@
             <span class="badge badge-secondary badge-pill">3</span>
         </h4>
         <ul class="list-group mb-3">
+            @foreach($ordered_pizzas as $ordered_pizza)
             <li class="list-group-item d-flex justify-content-between lh-condensed">
                 <div>
                     <h6 class="my-0">Product name</h6>
@@ -12,20 +13,7 @@
                 </div>
                 <span class="text-muted">$12</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                    <h6 class="my-0">Second product</h6>
-                    <small class="text-muted">Brief description</small>
-                </div>
-                <span class="text-muted">$8</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                    <h6 class="my-0">Third item</h6>
-                    <small class="text-muted">Brief description</small>
-                </div>
-                <span class="text-muted">$5</span>
-            </li>
+            @endforeach
             <li class="list-group-item d-flex justify-content-between bg-light">
                 <div class="text-success">
                     <h6 class="my-0">Promo code</h6>
@@ -72,17 +60,19 @@
             @if ('delivery' === $deliveryMethod)
                 <div class="mb-3">
                     <label for="firstName">Name</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="Ivan" value="">
+                    <input wire:model="name" type="text" class="form-control" id="firstName" placeholder="Ivan"
+                           value="">
                 </div>
 
                 <div class="mb-3">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="Lenina 45" required>
+                    <input wire:model="address" type="text" class="form-control" id="address" placeholder="Lenina 45">
                 </div>
 
                 <div class="mb-3">
                     <label for="comments">Comments</label>
-                    <textarea class="form-control" id="comments" rows="3" placeholder="Intercom code is #43"></textarea>
+                    <textarea wire:model="comments" class="form-control" id="comments" rows="3"
+                              placeholder="Intercom code is #43"></textarea>
                 </div>
             @endif
             <hr class="mb-4">
@@ -90,17 +80,17 @@
             <h4 class="mb-3">Payment</h4>
 
             <div class="d-block my-3">
-                <div class="custom-control custom-radio">
-                    <input id="credit" name="paymentMethod" type="radio" class="custom-control-input"
-                           checked
-                           required>
-                    <label class="custom-control-label" for="credit">Credit card</label>
-                </div>
-                <div class="custom-control custom-radio">
-                    <input id="debit" name="paymentMethod" type="radio" class="custom-control-input"
-                           required>
-                    <label class="custom-control-label" for="debit">Cash</label>
-                </div>
+                @foreach($payments as $payment)
+                    <div class="custom-control custom-radio">
+                        <input wire:model="paymentId" id="paymentMethod{{ $payment->id }}" name="paymentMethod"
+                               type="radio"
+                               class="custom-control-input"
+                               value="{{ $payment->id }}"
+                               required>
+                        <label class="custom-control-label"
+                               for="paymentMethod{{ $payment->id }}">{{ $payment->name }}</label>
+                    </div>
+                @endforeach
             </div>
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Finish checkout</button>

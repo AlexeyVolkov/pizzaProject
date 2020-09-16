@@ -13,7 +13,6 @@ class Basket extends Component
     public int $order_id;
     public Collection $pizzas;
     public Collection $toppings;
-    public Collection $payments;
     public Collection $currencies;
     public Collection $delivery_methods;
     public Collection $sizes;
@@ -29,7 +28,6 @@ class Basket extends Component
         $this->pizzas = $this->pizzaRepository->getPizzas();
         $this->sizes = $this->pizzaRepository->getPizzaSizes();
         $this->toppings = $this->pizzaRepository->getPizzaToppings();
-        $this->payments = $this->pizzaRepository->getPayments();
         $this->currencies = $this->pizzaRepository->getCurrencies();
         $this->delivery_methods = $this->pizzaRepository->getDeliveryMethods();
         $this->order_id = Order::find(session('order_id'))->id;

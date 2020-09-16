@@ -20,16 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57d7d4a4-2f69-4626-9d86-35e1d6353046" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/layout/checkout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Basket.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Basket.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/PizzaCard.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/PizzaCard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/basket-item.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/basket-item.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/basket.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/basket.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/pizza-card.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/pizza-card.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Checkout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/checkout.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +205,8 @@
       <workItem from="1600068381383" duration="186000" />
       <workItem from="1600103704257" duration="9452000" />
       <workItem from="1600152010966" duration="389000" />
-      <workItem from="1600159076713" duration="27370000" />
+      <workItem from="1600159076713" duration="27492000" />
+      <workItem from="1600267705451" duration="2838000" />
     </task>
     <task id="LOCAL-00001" summary="Add livewire, models, factories, migrations">
       <created>1600005304305</created>
@@ -262,7 +257,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600187473006</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add checkout form">
+      <created>1600195827830</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1600195827830</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,7 +290,8 @@
     <MESSAGE value="Add submit and rest for pizza-card" />
     <MESSAGE value="Add Service Container" />
     <MESSAGE value="Add Basket" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Basket" />
+    <MESSAGE value="Add checkout form" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add checkout form" />
   </component>
   <component name="WindowStateProjectService">
     <state x="644" y="296" width="622" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600000093287">
@@ -299,10 +302,10 @@
       <screen x="0" y="27" width="1920" height="935" />
     </state>
     <state x="699" y="96" width="502" height="811" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1920.935@0.27.1920.935" timestamp="1600022839390" />
-    <state x="693" y="252" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600195707861">
+    <state x="693" y="252" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600270504135">
       <screen x="0" y="27" width="1920" height="935" />
     </state>
-    <state x="693" y="252" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.935@0.27.1920.935" timestamp="1600195707861" />
+    <state x="693" y="252" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.935@0.27.1920.935" timestamp="1600270504135" />
     <state x="743" y="252" width="424" height="491" key="FileChooserDialogImpl" timestamp="1600115169780">
       <screen x="0" y="27" width="1920" height="935" />
     </state>
@@ -323,10 +326,10 @@
       <screen x="0" y="27" width="1920" height="935" />
     </state>
     <state x="342" y="130" width="1022" height="737" key="SettingsEditor/0.27.1920.935@0.27.1920.935" timestamp="1600188472518" />
-    <state x="555" y="230" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1600187474290">
+    <state x="555" y="230" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1600195829182">
       <screen x="0" y="27" width="1920" height="935" />
     </state>
-    <state x="555" y="230" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.935@0.27.1920.935" timestamp="1600187474290" />
+    <state x="555" y="230" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.935@0.27.1920.935" timestamp="1600195829182" />
     <state x="215" y="69" width="1662" height="814" key="find.popup" timestamp="1600164577635">
       <screen x="0" y="27" width="1920" height="935" />
     </state>
