@@ -10,10 +10,7 @@
         <tbody>
         @foreach($ordered_pizzas as $ordered_pizza)
             <livewire:basket-item
-                    :orderedPizza="$ordered_pizza"
-                    :pizza="$pizzas->find($ordered_pizza->pizza_id)"
-                    :topping="$toppings->find($ordered_pizza->topping_id)"
-                    :size="$sizes->find($ordered_pizza->size_id)"
+                    :orderedPizzaId="$ordered_pizza->id"
                     :key="$loop->index"
             />
         @endforeach

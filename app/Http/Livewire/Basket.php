@@ -4,19 +4,17 @@ namespace App\Http\Livewire;
 
 use App\Models\Order;
 use App\Models\OrderedPizza;
-use Livewire\Component;
-use Illuminate\Database\Eloquent\Collection;
 use App\Services\PizzaRepository;
+use Illuminate\Database\Eloquent\Collection;
+use Livewire\Component;
 
 class Basket extends Component
 {
-    public int $order_id;
+    public int $orderId;
     public Collection $pizzas;
     public Collection $toppings;
-    public Collection $currencies;
-    public Collection $delivery_methods;
     public Collection $sizes;
-    public Collection $ordered_pizzas;
+    public  $ordered_pizzas;
 
     protected $listeners = ['addPizza', 'removePizza'];
 
@@ -29,10 +27,8 @@ class Basket extends Component
         $this->pizzas = $this->pizzaRepository->getPizzas();
         $this->sizes = $this->pizzaRepository->getPizzaSizes();
         $this->toppings = $this->pizzaRepository->getPizzaToppings();
-        $this->currencies = $this->pizzaRepository->getCurrencies();
-        $this->delivery_methods = $this->pizzaRepository->getDeliveryMethods();
-        $this->order_id = Order::find(session('order_id'))->id;
-        $this->ordered_pizzas = OrderedPizza::where('order_id', $this->order_id)->get();
+        $this->orderId = Order::find(session('order_id'))->id;
+        $this->ordered_pizzas = OrderedPizza::where('order_id', $this->orderId)->get();
     }
 
     public function render()
@@ -47,11 +43,12 @@ class Basket extends Component
 
     public function updateOrderedPizzas()
     {
-        $this->ordered_pizzas = OrderedPizza::where('order_id', $this->order_id)->get();
+        $this->ordered_pizzas = OrderedPizza::where('order_id', $this->orderId)->get();
     }
 
-    public function removePizza()
+    public function removePizza($orderedPizzaId)
     {
+        $this->ordered_pizzas->find($orderedPizzaId)->delete();
         $this->updateOrderedPizzas();
     }
 

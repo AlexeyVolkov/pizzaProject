@@ -9,7 +9,6 @@ use Livewire\Component;
 class BasketButton extends Component
 {
     public int $pizza_number = 0;
-    public bool $clicked = false;
     public int $order_id = 0;
 
     protected $listeners = ['addPizza', 'removePizza'];
