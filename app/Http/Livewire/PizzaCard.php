@@ -3,26 +3,29 @@
 namespace App\Http\Livewire;
 
 use App\Http\Controllers\OrderedPizzaController;
+use App\Models\Order;
 use App\Models\Pizza;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class PizzaCard extends Component
 {
-    public $topping_id = 1;
-    public $size_id = 1;
-    public $price;
-    public $quantity = 1;
-    public $pizza;
-    public $toppings;
-    public $sizes;
+    public int $topping_id = 1;
+    public int $size_id = 1;
+    public float $price;
+    public int $quantity = 1;
+    public Pizza $pizza;
+    public Collection $toppings;
+    public Collection $sizes;
+    public float $currencyPriceFactor;
 
-    public function mount(Pizza $pizza, Collection $toppings, Collection $sizes)
+    public function mount(Pizza $pizza, Collection $toppings, Collection $sizes, int $currencyPriceFactor)
     {
         $this->pizza = $pizza;
         $this->price = $this->pizza->basic_price;
         $this->toppings = $toppings;
         $this->sizes = $sizes;
+        $this->currencyPriceFactor = $currencyPriceFactor;
     }
 
     public function render()
@@ -48,7 +51,8 @@ class PizzaCard extends Component
             $this->pizza->basic_price
             * $topping_factor
             * $size_factor
-            * $this->quantity;
+            * $this->quantity
+            * $this->currencyPriceFactor;
     }
 
     public function updatedSizeId(int $value)

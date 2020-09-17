@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use App\Services\PizzaRepository;
@@ -14,6 +15,7 @@ class PizzaList extends Component
     public Collection $currencies;
     public Collection $delivery_methods;
     public Collection $sizes;
+    public Order $order;
 
     private $pizzaRepository;
 
@@ -26,6 +28,7 @@ class PizzaList extends Component
         $this->payments = $this->pizzaRepository->getPayments();
         $this->currencies = $this->pizzaRepository->getCurrencies();
         $this->delivery_methods = $this->pizzaRepository->getDeliveryMethods();
+        $this->order = Order::find(session('order_id'));
     }
 
     public function render()
