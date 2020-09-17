@@ -9,6 +9,9 @@
 >
     <i class="fas fa-shopping-cart"></i>
     @if ($pizza_number>0)
-        <span class="badge badge-dark">{{ $pizza_number }}</span>
+        <span class="badge badge-dark">
+            {{ $pizza_number }}
+            {{ __('pizzas in basket') }}
+        </span>
     @endif
 </button>
