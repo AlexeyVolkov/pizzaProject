@@ -16,7 +16,7 @@ class CreatePizzaToppingsTable extends Migration
         Schema::create('pizza_toppings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->float('price_factor');
+            $table->float('basic_price');
             $table->timestamps();
         });
     }
