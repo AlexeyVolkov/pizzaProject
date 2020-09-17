@@ -15,6 +15,11 @@ class PizzaToppingSeeder extends Seeder
     public function run()
     {
         PizzaTopping::create([
+            'name' => 'Nothing',
+            'basic_price' => 0
+        ]);
+
+        PizzaTopping::create([
             'name' => 'Fresh mushrooms',
             'basic_price' => 2
         ]);

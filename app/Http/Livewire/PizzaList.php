@@ -11,13 +11,13 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class PizzaList extends Component
 {
     public Collection $toppings;
-    public Collection $payments;
     public Collection $currencies;
     public Collection $delivery_methods;
     public Collection $sizes;
     public Order $order;
-
-    private $pizzaRepository;
+    public int $orderId;
+    protected $listeners = ['currencyChanged'];
+    private PizzaRepository $pizzaRepository;
 
     public function mount(PizzaRepository $pizzaRepository)
     {
@@ -25,17 +25,30 @@ class PizzaList extends Component
 
         $this->sizes = $this->pizzaRepository->getPizzaSizes();
         $this->toppings = $this->pizzaRepository->getPizzaToppings();
-        $this->payments = $this->pizzaRepository->getPayments();
         $this->currencies = $this->pizzaRepository->getCurrencies();
         $this->delivery_methods = $this->pizzaRepository->getDeliveryMethods();
-        $this->order = Order::find(session('order_id'));
+        $this->orderId = session('order_id');
     }
 
-    public function render()
+    public function render(PizzaRepository $pizzaRepository)
     {
+        $this->pizzaRepository = $pizzaRepository;
+
+        $this->updateOrder();
+
         $viewAttributes = [
-            'pizzas' => $this->pizzas = $this->pizzaRepository->getPizzasPaginate(8)
+            'pizzas' => $this->pizzaRepository->getPizzasPaginate(8)
         ];
         return view('livewire.pizza-list', $viewAttributes);
+    }
+
+    public function updateOrder()
+    {
+        $this->order = Order::find($this->orderId);
+    }
+
+    public function currencyChanged()
+    {
+        $this->updateOrder();
     }
 }

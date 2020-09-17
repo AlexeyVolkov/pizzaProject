@@ -19,7 +19,8 @@ class Basket extends Component
     public Collection $ordered_pizzas;
 
     protected $listeners = ['addPizza', 'removePizza'];
-    private $pizzaRepository;
+
+    private PizzaRepository $pizzaRepository;
 
     public function mount(PizzaRepository $pizzaRepository)
     {

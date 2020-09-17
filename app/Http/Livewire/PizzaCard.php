@@ -3,10 +3,12 @@
 namespace App\Http\Livewire;
 
 use App\Http\Controllers\OrderedPizzaController;
+use App\Models\Currency;
 use App\Models\Order;
 use App\Models\Pizza;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
+use App\Services\PizzaRepository;
 
 class PizzaCard extends Component
 {
@@ -17,42 +19,47 @@ class PizzaCard extends Component
     public Pizza $pizza;
     public Collection $toppings;
     public Collection $sizes;
-    public float $currencyPriceFactor;
+    public Collection $currencies;
+    public Order $order;
+    protected $listeners = ['currencyChanged'];
+    private PizzaRepository $pizzaRepository;
 
-    public function mount(Pizza $pizza, Collection $toppings, Collection $sizes, int $currencyPriceFactor)
+    public function mount(PizzaRepository $pizzaRepository)
     {
-        $this->pizza = $pizza;
-        $this->price = $this->pizza->basic_price;
-        $this->toppings = $toppings;
-        $this->sizes = $sizes;
-        $this->currencyPriceFactor = $currencyPriceFactor;
+        $this->pizzaRepository = $pizzaRepository;
+
+        $this->toppings = $this->pizzaRepository->getPizzaToppings();
+        $this->sizes = $this->pizzaRepository->getPizzaSizes();
+        $this->currencies = $this->pizzaRepository->getCurrencies();
+        $this->order = Order::find(session('order_id'));
     }
 
     public function render()
     {
+        $this->updatePrice();
+
         return view('livewire.pizza-card', [
             'toppings' => $this->toppings,
             'sizes' => $this->sizes
         ]);
     }
 
+    public function updatePrice()
+    {
+        $this->price =
+            $this->pizza->basic_price
+            * $this->sizes->find($this->size_id)->price_factor
+            * $this->quantity;
+
+        $this->price += $this->toppings->find($this->topping_id)->basic_price;
+        $this->price *= $this->currencies->find($this->order->currency_id)->price_factor;
+        $this->price = round($this->price, 2);
+    }
+
     public function updatedToppingId(int $value)
     {
         $this->topping_id = $value;
         $this->updatePrice();
-    }
-
-    public function updatePrice()
-    {
-        $topping_factor = $this->toppings->find($this->topping_id)->price_factor ?? 1;
-        $size_factor = $this->sizes->find($this->size_id)->price_factor ?? 1;
-
-        $this->price =
-            $this->pizza->basic_price
-            * $topping_factor
-            * $size_factor
-            * $this->quantity
-            * $this->currencyPriceFactor;
     }
 
     public function updatedSizeId(int $value)
@@ -69,21 +76,18 @@ class PizzaCard extends Component
 
     public function submit()
     {
-        $this->emit('addPizza');
         OrderedPizzaController::createOrderedPizza(
-            session('order_id'),
+            $this->order->id,
             $this->pizza->id,
-            $this->topping_id,
-            $this->size_id,
+            $this->toppings->find($this->topping_id)->id,
+            $this->sizes->find($this->size_id)->id,
             $this->quantity
         );
-
+        $this->emit('addPizza');
     }
 
-    public function resetSubmit()
+    public function currencyChanged()
     {
-        $this->added = false;
-        $this->button_message = __('Add');
-        $this->emit('removePizza');
+        $this->updatePrice();
     }
 }

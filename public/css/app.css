@@ -17355,3 +17355,14 @@ readers do not read off random characters that represent icons */
      object-fit: cover;
 }
 
+.card-text {
+  font-feature-settings: "onum", "tnum", "zero";
+  font-variant-numeric: tabular-nums slashed-zero oldstyle-nums;
+  hanging-punctuation: first force-end last;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+  line-height: 1.5;
+  text-rendering: geometricPrecision;
+}
+

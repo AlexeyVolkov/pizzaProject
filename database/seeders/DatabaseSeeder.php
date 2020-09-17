@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             DeliveryMethodSeeder::class,
             PaymentMethodSeeder::class,
             PizzaSeeder::class,
-            PizzaSizeSeeder::class
+            PizzaSizeSeeder::class,
+            PizzaToppingSeeder::class
         ]);
     }
 }
