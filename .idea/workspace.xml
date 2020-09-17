@@ -21,11 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="57d7d4a4-2f69-4626-9d86-35e1d6353046" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/PizzaCard.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/PizzaCard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/PizzaList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/PizzaList.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_13_102740_create_currencies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_13_102740_create_currencies_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/pizza-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/pizza-list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Checkout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/checkout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/currency-switch.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/currency-switch.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +209,8 @@
       <workItem from="1600159076713" duration="27492000" />
       <workItem from="1600267705451" duration="11650000" />
       <workItem from="1600326181294" duration="586000" />
-      <workItem from="1600331393151" duration="2296000" />
+      <workItem from="1600331393151" duration="5727000" />
+      <workItem from="1600352197175" duration="16431000" />
     </task>
     <task id="LOCAL-00001" summary="Add livewire, models, factories, migrations">
       <created>1600005304305</created>
@@ -289,7 +289,35 @@
       <option name="project" value="LOCAL" />
       <updated>1600288670053</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Currency Seeder">
+      <created>1600333712798</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1600333712798</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Add seeders">
+      <created>1600357247585</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1600357247585</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Edit pizza-card">
+      <created>1600369269322</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1600369269322</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Edit checkout and basket">
+      <created>1600372401124</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1600372401124</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,7 +346,11 @@
     <MESSAGE value="Add checkout form" />
     <MESSAGE value="Edit checkout page" />
     <MESSAGE value="Add currency, finish checkout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add currency, finish checkout" />
+    <MESSAGE value="Currency Seeder" />
+    <MESSAGE value="Add seeders" />
+    <MESSAGE value="Edit pizza-card" />
+    <MESSAGE value="Edit checkout and basket" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit checkout and basket" />
   </component>
   <component name="WindowStateProjectService">
     <state x="644" y="296" width="622" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600000093287">
@@ -353,14 +385,14 @@
       <screen x="0" y="27" width="1920" height="935" />
     </state>
     <state x="342" y="130" width="1022" height="737" key="SettingsEditor/0.27.1920.935@0.27.1920.935" timestamp="1600188472518" />
-    <state x="555" y="230" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1600288671250">
+    <state x="555" y="230" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1600372402556">
       <screen x="0" y="27" width="1920" height="935" />
     </state>
-    <state x="555" y="230" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.935@0.27.1920.935" timestamp="1600288671250" />
-    <state x="215" y="69" width="1662" height="814" key="find.popup" timestamp="1600164577635">
+    <state x="555" y="230" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.935@0.27.1920.935" timestamp="1600372402556" />
+    <state x="215" y="69" width="1662" height="814" key="find.popup" timestamp="1600367614210">
       <screen x="0" y="27" width="1920" height="935" />
     </state>
-    <state x="215" y="69" width="1662" height="814" key="find.popup/0.27.1920.935@0.27.1920.935" timestamp="1600164577635" />
+    <state x="215" y="69" width="1662" height="814" key="find.popup/0.27.1920.935@0.27.1920.935" timestamp="1600367614210" />
     <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1600287268801">
       <screen x="0" y="27" width="1920" height="935" />
     </state>

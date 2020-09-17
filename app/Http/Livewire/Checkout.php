@@ -24,9 +24,9 @@ class Checkout extends Component
     public float $totalPrice;
 
     protected $rules = [
-        'order.name' => 'string',
-        'order.address' => 'string|min:6',
-        'order.comments' => 'string'
+        'order.name' => 'nullable|string',
+        'order.address' => 'nullable|string|min:6',
+        'order.comments' => 'nullable|string'
     ];
 
     private $pizzaRepository;

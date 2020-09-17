@@ -1,5 +1,5 @@
 <header id="top">
-    <div class="collapse bg-dark show" id="basket">
+    <div class="collapse bg-dark" id="basket">
         <div class="container">
             <livewire:basket/>
         </div>
