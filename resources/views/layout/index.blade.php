@@ -10,5 +10,4 @@
 
     </main>
 
-    <x-footer></x-footer>
 </x-app>

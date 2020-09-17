@@ -52,12 +52,13 @@ class Checkout extends Component
         foreach ($this->orderedPizzas as $orderedPizza) {
             $this->totalPrice +=
                 $this->pizzas->find($orderedPizza->pizza_id)->basic_price
-                * $this->toppings->find($orderedPizza->topping_id)->price_factor
                 * $this->sizes->find($orderedPizza->size_id)->price_factor
                 * $orderedPizza->quantity;
+            $this->totalPrice += $this->toppings->find($orderedPizza->topping_id)->basic_price;
         }
         $this->totalPrice *= $this->deliveryMethods->find($this->order->delivery_method_id)->price_factor;
         $this->totalPrice *= $this->payments->find($this->order->payment_id)->price_factor;
+        $this->totalPrice *= $this->currencies->find($this->order->currency_id)->price_factor;
         $this->totalPrice = round($this->totalPrice, 2);
 
         return view('livewire.checkout');
@@ -66,11 +67,13 @@ class Checkout extends Component
     public function changeDeliveryMethod(int $methodId)
     {
         $this->order->delivery_method_id = $this->deliveryMethods->find($methodId)->id;
+        $this->order->save();
     }
 
     public function changePaymentMethod(int $methodId)
     {
         $this->order->payment_id = $this->payments->find($methodId)->id;
+        $this->order->save();
     }
 
     public function checkout(){

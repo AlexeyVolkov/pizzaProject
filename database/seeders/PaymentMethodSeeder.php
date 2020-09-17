@@ -16,7 +16,7 @@ class PaymentMethodSeeder extends Seeder
     {
         Payment::create([
             'name' => 'Bank Card',
-            'price_factor' => 1.02
+            'price_factor' => 1.03
         ]);
 
         Payment::create([

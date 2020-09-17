@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-4 order-md-2 mb-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Your cart</span>
+            <span class="text-muted">{{ __('Your cart') }}</span>
             <span class="badge badge-secondary badge-pill">{{ $orderedPizzas->count() }}</span>
         </h4>
         <ul class="list-group mb-3">
@@ -10,19 +10,24 @@
                     <div>
                         <h6 class="my-0">{{ $pizzas->find($ordered_pizza->pizza_id)->name }}</h6>
                         <small class="text-muted">
-                            {{ $toppings->find($ordered_pizza->pizza_id)->name }},
-                            {{ $sizes->find($ordered_pizza->pizza_id)->name }}
+                            {{ $toppings->find($ordered_pizza->topping_id)->name }},
+                            {{ $sizes->find($ordered_pizza->size_id)->name }}
                         </small>
                     </div>
                     <span class="text-muted">
-                        ${{
+                        <i class="{{ $currencies->find($order->currency_id)->icon_class }}"></i>
+                        {{
                             round(
-                                $pizzas->find($ordered_pizza->pizza_id)->basic_price
-                                * $toppings->find($ordered_pizza->topping_id)->price_factor
-                                * $sizes->find($ordered_pizza->size_id)->price_factor
-                                * $ordered_pizza->quantity,
-                                2
-                            )
+                                    (
+                                        (
+                                            $pizzas->find($ordered_pizza->pizza_id)->basic_price
+                                            * $sizes->find($ordered_pizza->size_id)->price_factor
+                                            * $ordered_pizza->quantity
+                                        )
+                                        + $toppings->find($ordered_pizza->topping_id)->basic_price
+                                    )
+                                    * $currencies->find($order->currency_id)->price_factor,
+                                2)
                         }}
                     </span>
                 </li>
@@ -34,7 +39,7 @@
                         {{ $deliveryMethods->find($order->delivery_method_id)->name }}
                     </h6>
                 </div>
-                <span class="text-secondary">{{ $deliveryMethods->find($order->delivery_method_id)->price_factor * 100 }}%</span>
+                <span class="text-secondary">{{ $deliveryMethods->find($order->delivery_method_id)->price_factor * 100 - 100 }}%</span>
             </li>
             <li class="list-group-item d-flex justify-content-between bg-light">
                 <div class="text-secondary">
@@ -43,11 +48,14 @@
                         {{ $payments->find($order->payment_id)->name }}
                     </h6>
                 </div>
-                <span class="text-secondary">{{ $payments->find($order->payment_id)->price_factor * 100 }}%</span>
+                <span class="text-secondary">{{ $payments->find($order->payment_id)->price_factor * 100 - 100}}%</span>
             </li>
             <li class="list-group-item d-flex justify-content-between">
-                <span>Total (USD)</span>
-                <strong>${{ $totalPrice }}</strong>
+                <span>Total ({{ $currencies->find($order->currency_id)->name }})</span>
+                <strong>
+                    <i class="{{ $currencies->find($order->currency_id)->icon_class }}"></i>
+                    {{ $totalPrice }}
+                </strong>
             </li>
         </ul>
     </div>
@@ -64,7 +72,7 @@
                    class="list-group-item list-group-item-action @if ($order->delivery_method_id == $deliveryMethod->id) active @endif">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{ $deliveryMethod->name }}</h5>
-                        <small>{{ $deliveryMethod->price_factor * 100 }}%</small>
+                        <small>{{ $deliveryMethod->price_factor * 100 - 100 }}%</small>
                     </div>
                 </a>
             @endforeach
