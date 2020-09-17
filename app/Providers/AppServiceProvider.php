@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\PizzaSize;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -52,5 +53,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+        Schema::defaultStringLength(191);
     }
 }
