@@ -32,7 +32,7 @@
                         <i class="input-group-text fas fa-pepper-hot"></i>
                     </div>
                     <select wire:model="topping_id" class="form-control form-control-sm custom-select"
-                            id="selectTize_{{ $pizza->id }}"
+                            id="selectSize_{{ $pizza->id }}"
                             name="topping"
                             title="{{ __('Pizza topping') }}">
                         @foreach ($toppings as $topping)
@@ -50,10 +50,20 @@
                     <div class="input-group-prepend">
                         <i class="input-group-text fas fa-sort-numeric-up-alt"></i>
                     </div>
-                    <input wire:model="quantity" type="number" class="form-control form-control-sm"
-                           id="inputQuantity_{{ $pizza->id }}"
-                           name="quantity" placeholder="1" min="1" max="25" value="1"
-                           title="{{ __('Quantity') }}">
+                    <select wire:model="quantity" class="form-control form-control-sm custom-select"
+                            id="quantity_{{ $pizza->id }}"
+                            name="quantity"
+                            title="{{ __('Pizza quantity') }}">
+                        <optgroup label="{{ __('Pizza quantity') }}">
+                            <option value="1">{{ __('One') }}</option>
+                            <option value="2">{{ __('Two') }}</option>
+                            <option value="3">{{ __('Three') }}</option>
+                            <option value="4">{{ __('Four') }}</option>
+                            <option value="5">{{ __('Five') }}</option>
+                            <option value="6">{{ __('Six') }}</option>
+                            <option value="7">{{ __('Seven') }}</option>
+                        </optgroup>
+                    </select>
                 </div>
             </div>
             <div class="card-footer text-muted">

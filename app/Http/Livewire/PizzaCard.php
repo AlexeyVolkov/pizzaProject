@@ -24,6 +24,12 @@ class PizzaCard extends Component
     protected $listeners = ['currencyChanged'];
     private PizzaRepository $pizzaRepository;
 
+    protected $rules = [
+        'size_id' => 'integer',
+        'topping_id' => 'integer',
+        'quantity' => 'integer'
+    ];
+
     public function mount(PizzaRepository $pizzaRepository)
     {
         $this->pizzaRepository = $pizzaRepository;
@@ -58,24 +64,23 @@ class PizzaCard extends Component
 
     public function updatedToppingId(int $value)
     {
-        $this->topping_id = $value;
         $this->updatePrice();
     }
 
     public function updatedSizeId(int $value)
     {
-        $this->size_id = $value;
         $this->updatePrice();
     }
 
     public function updatedQuantity($value)
     {
-        $this->quantity = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
         $this->updatePrice();
     }
 
     public function submit()
     {
+        $this->validate();
+
         OrderedPizzaController::createOrderedPizza(
             $this->order->id,
             $this->pizza->id,
