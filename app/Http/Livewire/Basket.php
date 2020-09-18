@@ -32,9 +32,14 @@ class Basket extends Component
     {
     }
 
-    public function removePizza($orderedPizzaId)
+    public function removePizza()
+    {
+    }
+
+    public function removePizzaFromBasket($orderedPizzaId)
     {
         OrderedPizza::find($orderedPizzaId)->delete();
+        $this->emit('removePizza');
     }
 
     public function checkout()

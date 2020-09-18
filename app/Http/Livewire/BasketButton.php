@@ -8,34 +8,22 @@ use Livewire\Component;
 
 class BasketButton extends Component
 {
-    public int $pizzaNumber = 0;
-    public int $order_id = 0;
-
     protected $listeners = ['addPizza', 'removePizza'];
-
-    public function mount()
-    {
-        $this->order_id = Order::find(session('order_id'))->id;
-        $this->updatePizzaNumber();
-    }
-
-    public function updatePizzaNumber()
-    {
-        $this->pizzaNumber = OrderedPizza::where('order_id', $this->order_id)->count();
-    }
 
     public function render()
     {
-        return view('livewire.basket-button');
+        $order_id = Order::find(session('order_id'))->id;
+
+        return view('livewire.basket-button', [
+            'pizzaNumber' => OrderedPizza::where('order_id', $order_id)->count()
+        ]);
     }
 
     public function addPizza()
     {
-        $this->updatePizzaNumber();
     }
 
     public function removePizza()
     {
-        $this->updatePizzaNumber();
     }
 }

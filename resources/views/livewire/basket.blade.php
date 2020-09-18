@@ -1,7 +1,6 @@
 <section class="pt-2 pb-1">
     <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-muted">{{ __('Cart') }}</span>
-        <span class="badge badge-secondary badge-pill">{{ $orderedPizzas->count() }}</span>
     </h4>
     <ul class="list-group">
         @foreach($orderedPizzas as $ordered_pizza)
@@ -29,7 +28,7 @@
                                 2)
                         }}
                     <button
-                            wire:click.prevent="removePizza({{ $ordered_pizza->id }})"
+                            wire:click.prevent="removePizzaFromBasket({{ $ordered_pizza->id }})"
                             type="button"
                             class="btn btn-link ml-1">
                     <i class="fas fa-trash"></i>
