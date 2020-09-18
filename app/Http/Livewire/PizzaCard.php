@@ -68,9 +68,9 @@ class PizzaCard extends Component
         $this->updatePrice();
     }
 
-    public function updatedQuantity(int $value)
+    public function updatedQuantity($value)
     {
-        $this->quantity = $value;
+        $this->quantity = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
         $this->updatePrice();
     }
 
