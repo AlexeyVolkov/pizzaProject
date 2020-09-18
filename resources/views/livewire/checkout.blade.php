@@ -51,7 +51,7 @@
                 <span class="text-secondary">{{ $payments->find($order->payment_id)->price_factor * 100 - 100}}%</span>
             </li>
             <li class="list-group-item d-flex justify-content-between">
-                <span>Total ({{ $currencies->find($order->currency_id)->name }})</span>
+                <span>{{ __('Total') }} ({{ $currencies->find($order->currency_id)->name }})</span>
                 <strong>
                     <i class="{{ $currencies->find($order->currency_id)->icon_class }}"></i>
                     {{ $totalPrice }}

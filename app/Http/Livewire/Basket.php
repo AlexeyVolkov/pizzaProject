@@ -5,55 +5,44 @@ namespace App\Http\Livewire;
 use App\Models\Order;
 use App\Models\OrderedPizza;
 use App\Services\PizzaRepository;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class Basket extends Component
 {
-    public int $orderId;
-    public Collection $pizzas;
-    public Collection $toppings;
-    public Collection $sizes;
-    public  $ordered_pizzas;
-
-    protected $listeners = ['addPizza', 'removePizza'];
-
+    protected $listeners = ['addPizza', 'removePizza', 'currencyChanged'];
+    private Order $order;
     private PizzaRepository $pizzaRepository;
 
-    public function mount(PizzaRepository $pizzaRepository)
+    public function render(PizzaRepository $pizzaRepository)
     {
         $this->pizzaRepository = $pizzaRepository;
+        $this->order = Order::find(session('order_id'));
 
-        $this->pizzas = $this->pizzaRepository->getPizzas();
-        $this->sizes = $this->pizzaRepository->getPizzaSizes();
-        $this->toppings = $this->pizzaRepository->getPizzaToppings();
-        $this->orderId = Order::find(session('order_id'))->id;
-        $this->ordered_pizzas = OrderedPizza::where('order_id', $this->orderId)->get();
-    }
-
-    public function render()
-    {
-        return view('livewire.basket');
+        return view('livewire.basket', [
+            'currencies' => $this->pizzaRepository->getCurrencies(),
+            'toppings' => $this->pizzaRepository->getPizzaToppings(),
+            'sizes' => $this->pizzaRepository->getPizzaSizes(),
+            'pizzas' => $this->pizzaRepository->getPizzas(),
+            'orderedPizzas' => OrderedPizza::where('order_id', $this->order->id)->get(),
+            'order' => $this->order
+        ]);
     }
 
     public function addPizza()
     {
-        $this->updateOrderedPizzas();
-    }
-
-    public function updateOrderedPizzas()
-    {
-        $this->ordered_pizzas = OrderedPizza::where('order_id', $this->orderId)->get();
     }
 
     public function removePizza($orderedPizzaId)
     {
-        $this->ordered_pizzas->find($orderedPizzaId)->delete();
-        $this->updateOrderedPizzas();
+        OrderedPizza::find($orderedPizzaId)->delete();
     }
 
     public function checkout()
     {
         return redirect()->route('checkout');
+    }
+
+    public function currencyChanged()
+    {
     }
 }

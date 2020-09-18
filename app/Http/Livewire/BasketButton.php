@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class BasketButton extends Component
 {
-    public int $pizza_number = 0;
+    public int $pizzaNumber = 0;
     public int $order_id = 0;
 
     protected $listeners = ['addPizza', 'removePizza'];
@@ -21,7 +21,7 @@ class BasketButton extends Component
 
     public function updatePizzaNumber()
     {
-        $this->pizza_number = OrderedPizza::where('order_id', $this->order_id)->count();
+        $this->pizzaNumber = OrderedPizza::where('order_id', $this->order_id)->count();
     }
 
     public function render()
