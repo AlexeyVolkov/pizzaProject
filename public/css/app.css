@@ -17366,3 +17366,7 @@ readers do not read off random characters that represent icons */
   text-rendering: geometricPrecision;
 }
 
+.currency-switch__item {
+  padding: 0.25rem 0.75rem;
+}
+
