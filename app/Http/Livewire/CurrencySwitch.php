@@ -11,14 +11,13 @@ use Livewire\Component;
 class CurrencySwitch extends Component
 {
     public int $currencyId = 1;
-    private Order $order;
     private $pizzaRepository;
 
     public function render(PizzaRepository $pizzaRepository)
     {
         $this->pizzaRepository = $pizzaRepository;
-        $this->order = OrderController::getBySessionId();
-        $this->currencyId = $this->order->currency_id;
+        $order = OrderController::getBySessionId();
+        $this->currencyId = $order->currency_id;
 
         return view('livewire.currency-switch', [
             'currencies' => $this->pizzaRepository->getCurrencies(),
@@ -28,7 +27,7 @@ class CurrencySwitch extends Component
     public function currencyChange(int $value)
     {
         $value = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
-        $this->order->update(['currency_id' => $value]);
+        OrderController::getBySessionId()->update(['currency_id' => $value]);
 
         $this->emit('currencyChanged');
     }
