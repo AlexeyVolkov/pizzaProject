@@ -12,7 +12,7 @@
                     <div class="input-group-prepend">
                         <i class="input-group-text fas fa-ruler-combined"></i>
                     </div>
-                    <select wire:model="size_id" class="form-control form-control-sm custom-select"
+                    <select wire:model="sizeId" class="form-control form-control-sm custom-select"
                             id="selectSize_{{ $pizza->id }}"
                             name="size"
                             title="{{ __('Pizza size') }}">
@@ -31,7 +31,7 @@
                     <div class="input-group-prepend">
                         <i class="input-group-text fas fa-pepper-hot"></i>
                     </div>
-                    <select wire:model="topping_id" class="form-control form-control-sm custom-select"
+                    <select wire:model="toppingId" class="form-control form-control-sm custom-select"
                             id="selectSize_{{ $pizza->id }}"
                             name="topping"
                             title="{{ __('Pizza topping') }}">

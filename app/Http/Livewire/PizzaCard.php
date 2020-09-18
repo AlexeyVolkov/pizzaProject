@@ -2,97 +2,83 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderedPizzaController;
-use App\Models\Currency;
-use App\Models\Order;
-use App\Models\Pizza;
-use Illuminate\Database\Eloquent\Collection;
-use Livewire\Component;
 use App\Services\PizzaRepository;
+use Livewire\Component;
 
 class PizzaCard extends Component
 {
-    public int $topping_id = 1;
-    public int $size_id = 1;
-    public float $price;
+    public int $pizzaId;
+    public int $toppingId = 1;
+    public int $sizeId = 1;
     public int $quantity = 1;
-    public Pizza $pizza;
-    public Collection $toppings;
-    public Collection $sizes;
-    public Collection $currencies;
-    public Order $order;
-    protected $listeners = ['currencyChanged'];
-    private PizzaRepository $pizzaRepository;
 
+    protected $listeners = ['currencyChanged'];
     protected $rules = [
-        'size_id' => 'integer',
-        'topping_id' => 'integer',
+        'sizeId' => 'integer',
+        'toppingId' => 'integer',
         'quantity' => 'integer'
     ];
+    private PizzaRepository $pizzaRepository;
 
-    public function mount(PizzaRepository $pizzaRepository)
+    public function render(PizzaRepository $pizzaRepository)
     {
         $this->pizzaRepository = $pizzaRepository;
 
-        $this->toppings = $this->pizzaRepository->getPizzaToppings();
-        $this->sizes = $this->pizzaRepository->getPizzaSizes();
-        $this->currencies = $this->pizzaRepository->getCurrencies();
-        $this->order = Order::find(session('order_id'));
-    }
-
-    public function render()
-    {
-        $this->updatePrice();
+        $order = OrderController::getBySessionId();
+        $pizza = $this->pizzaRepository->getPizzas()->find($this->pizzaId);
+        $toppings = $this->pizzaRepository->getPizzaToppings();
+        $sizes = $this->pizzaRepository->getPizzaSizes();
+        $currencies = $this->pizzaRepository->getCurrencies();
+        // price
+        $price =
+            $pizza->basic_price
+            * $sizes->find($this->sizeId)->price_factor
+            * $this->quantity;
+        $price += $toppings->find($this->toppingId)->basic_price;
+        $price *= $currencies->find($order->currency_id)->price_factor;
+        $price = round($price, 2);
 
         return view('livewire.pizza-card', [
-            'toppings' => $this->toppings,
-            'sizes' => $this->sizes
+            'toppings' => $toppings,
+            'sizes' => $sizes,
+            'currencies' => $currencies,
+            'order' => $order,
+            'pizza' => $pizza,
+            'price' => $price
         ]);
-    }
-
-    public function updatePrice()
-    {
-        $this->price =
-            $this->pizza->basic_price
-            * $this->sizes->find($this->size_id)->price_factor
-            * $this->quantity;
-
-        $this->price += $this->toppings->find($this->topping_id)->basic_price;
-        $this->price *= $this->currencies->find($this->order->currency_id)->price_factor;
-        $this->price = round($this->price, 2);
     }
 
     public function updatedToppingId(int $value)
     {
-        $this->updatePrice();
     }
 
     public function updatedSizeId(int $value)
     {
-        $this->updatePrice();
     }
 
     public function updatedQuantity($value)
     {
-        $this->updatePrice();
     }
 
-    public function submit()
+    public function submit(PizzaRepository $pizzaRepository)
     {
+        $this->pizzaRepository = $pizzaRepository;
         $this->validate();
 
         OrderedPizzaController::createOrderedPizza(
-            $this->order->id,
-            $this->pizza->id,
-            $this->toppings->find($this->topping_id)->id,
-            $this->sizes->find($this->size_id)->id,
+            OrderController::getBySessionId()->id,
+            $this->pizzaRepository->getPizzas()->find($this->pizzaId)->id,
+            $this->pizzaRepository->getPizzaToppings()->find($this->toppingId)->id,
+            $this->pizzaRepository->getPizzaSizes()->find($this->sizeId)->id,
             $this->quantity
         );
+
         $this->emit('addPizza');
     }
 
     public function currencyChanged()
     {
-        $this->updatePrice();
     }
 }

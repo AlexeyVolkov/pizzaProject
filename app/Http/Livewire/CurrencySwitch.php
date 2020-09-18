@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\OrderController;
 use App\Models\Order;
 use App\Services\PizzaRepository;
 use Illuminate\Database\Eloquent\Collection;
@@ -9,23 +10,19 @@ use Livewire\Component;
 
 class CurrencySwitch extends Component
 {
-    public Collection $currencies;
     public int $currencyId = 1;
-    public Order $order;
+    private Order $order;
     private $pizzaRepository;
 
-    public function mount(PizzaRepository $pizzaRepository)
+    public function render(PizzaRepository $pizzaRepository)
     {
         $this->pizzaRepository = $pizzaRepository;
-
-        $this->currencies = $this->pizzaRepository->getCurrencies();
-        $this->order = Order::find(session('order_id'));
-    }
-
-    public function render()
-    {
+        $this->order = OrderController::getBySessionId();
         $this->currencyId = $this->order->currency_id;
-        return view('livewire.currency-switch');
+
+        return view('livewire.currency-switch', [
+            'currencies' => $this->pizzaRepository->getCurrencies(),
+        ]);
     }
 
     public function currencyChange(int $value)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\OrderController;
 use App\Models\Order;
 use App\Models\OrderedPizza;
 use App\Services\PizzaRepository;
@@ -16,7 +17,7 @@ class Basket extends Component
     public function render(PizzaRepository $pizzaRepository)
     {
         $this->pizzaRepository = $pizzaRepository;
-        $this->order = Order::find(session('order_id'));
+        $this->order = OrderController::getBySessionId();
 
         return view('livewire.basket', [
             'currencies' => $this->pizzaRepository->getCurrencies(),
