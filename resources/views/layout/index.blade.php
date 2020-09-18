@@ -10,4 +10,15 @@
 
     </main>
 
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="{{ route('checkout') }}" class="navbar-brand d-flex align-items-center">
+                    <i class="fas fa-cash-register"></i>
+                    &nbsp;
+                    {{ __('Proceed to payment') }}
+                </a>
+            </p>
+        </div>
+    </footer>
 </x-app>
