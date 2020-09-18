@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -16,5 +15,11 @@ class OrderController extends Controller
         }
         $order->save();
         return $order->id;
+    }
+
+    public static function getBySessionId(): Order
+    {
+        $orderId = filter_var(session('order_id'), FILTER_SANITIZE_NUMBER_INT);
+        return Order::find($orderId);
     }
 }
