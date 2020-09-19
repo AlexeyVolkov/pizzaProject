@@ -3,7 +3,7 @@
         <div class="container">
             <div class="py-5 text-center">
                 <small>
-                    <a href="/" title="{{ __('Choose pizza') }}">
+                    <a href="{{ route('home') }}" title="{{ __('Choose pizzas') }}">
                     <i class="fas fa-arrow-circle-left"></i>
                     {{ __('Back to pizzas') }}
                     </a>

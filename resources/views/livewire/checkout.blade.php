@@ -85,19 +85,19 @@
                         <i class="fas fa-user"></i>
                         {{ __('Name') }}
                     </label>
-                    <input wire:model.lazy="order.name" type="text" class="form-control" id="firstName"
+                    <input wire:model.lazy="name" type="text" class="form-control" id="firstName"
                            placeholder="Ivan"
                            value="">
-                    @error('order.name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
                 <div class="mb-3">
                     <label for="address">
                         <i class="fas fa-map-marked-alt"></i>
                         {{ __('Address') }}
                     </label>
-                    <input wire:model.lazy="order.address" type="text" class="form-control" id="address"
+                    <input wire:model.lazy="address" type="text" class="form-control" id="address"
                            placeholder="Lenina 45" min="6">
-                    @error('order.address') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    @error('address') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
                 <div class="mb-3">
@@ -105,9 +105,9 @@
                         <i class="fas fa-comment-alt"></i>
                         {{ __('Comments') }}
                     </label>
-                    <textarea wire:model.lazy="order.comments" class="form-control" id="comments" rows="3"
+                    <textarea wire:model.lazy="comments" class="form-control" id="comments" rows="3"
                               placeholder="Intercom code is #43"></textarea>
-                    @error('order.comments') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    @error('comments') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
             @endif
             <hr class="mb-4">
