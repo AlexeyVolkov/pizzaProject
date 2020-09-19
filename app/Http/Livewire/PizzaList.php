@@ -18,7 +18,7 @@ class PizzaList extends Component
         return view('livewire.pizza-list', [
             'order' => OrderController::getBySessionId(),
             'sizes' => $this->pizzaRepository->getPizzaSizes(),
-            'pizzas' => $this->pizzaRepository->getPizzasPaginate(8),
+            'pizzas' => $this->pizzaRepository->getPizzasPaginate(16),
             'toppings' => $this->pizzaRepository->getPizzaToppings(),
             'currencies' => $this->pizzaRepository->getCurrencies(),
         ]);

@@ -3,7 +3,7 @@
         @foreach ($pizzas as $pizza)
             <livewire:pizza-card
                     :pizzaId="$pizza->id"
-                    :key="$pizza->id">
+                    :key="$pizza->id"/>
         @endforeach
     </article>
     <footer class="row">
