@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-md-4 order-md-2 mb-4">
+<section class="row">
+    <aside class="col-md-4 order-md-2 mb-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">{{ __('Your cart') }}</span>
             <span class="badge badge-secondary badge-pill">{{ $orderedPizzas->count() }}</span>
@@ -58,8 +58,14 @@
                 </strong>
             </li>
         </ul>
-    </div>
-    <div class="col-md-8 order-md-1">
+        <footer class="text-right">
+            <small class="text-muted">
+                Order number:
+                <strong>{{ $order->id }}</strong>
+            </small>
+        </footer>
+    </aside>
+    <main class="col-md-8 order-md-1">
         <h4 class="mb-3">
             <i class="fas fa-truck"></i>
             {{ __('Delivery') }}
@@ -88,7 +94,8 @@
                     <input wire:model.lazy="name" type="text" class="form-control" id="firstName"
                            placeholder="Ivan"
                            value="">
-                    @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
                 <div class="mb-3">
                     <label for="address">
@@ -97,7 +104,8 @@
                     </label>
                     <input wire:model.lazy="address" type="text" class="form-control" id="address"
                            placeholder="Lenina 45" min="6">
-                    @error('address') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    @error('address')
+                    <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
                 <div class="mb-3">
@@ -107,7 +115,8 @@
                     </label>
                     <textarea wire:model.lazy="comments" class="form-control" id="comments" rows="3"
                               placeholder="Intercom code is #43"></textarea>
-                    @error('comments') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    @error('comments')
+                    <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
             @endif
             <hr class="mb-4">
@@ -133,9 +142,15 @@
                 @endforeach
             </div>
             <hr class="mb-4">
+            @if ($checkedOut)
+                <div class="alert alert-success" role="alert">
+                    {{ __('Thank you! We\'re already cooking ') }} <i class="fas fa-pizza-slice"></i>
+                </div>
+            @endif
             <button class="btn btn-primary btn-lg btn-block" type="submit">
                 {{ __('Finish checkout') }}
             </button>
+
         </form>
-    </div>
-</div>
+    </main>
+</section>

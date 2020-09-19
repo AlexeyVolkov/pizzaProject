@@ -12,6 +12,9 @@ class Checkout extends Component
     public string $name = '';
     public string $address = '';
     public string $comments = '';
+    public bool $checkedOut = false;
+
+    protected $listeners = ['orderConfirmed'];
 
     protected $rules = [
         'name' => 'nullable|string',
@@ -80,6 +83,14 @@ class Checkout extends Component
         $order->comments = filter_var($this->comments, FILTER_SANITIZE_STRING);
         $order->is_confirmed = true;
         $order->save();
+
+        $this->checkedOut = true;
+        $this->emitSelf('orderConfirmed');
+    }
+
+    public function orderConfirmed()
+    {
+        sleep(5);
 
         return redirect()->route('orderConfirmed');
     }
