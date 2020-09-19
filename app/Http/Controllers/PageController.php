@@ -14,12 +14,12 @@ class PageController extends Controller
 {
     public function index(Request $request)
     {
-        $this->getOrderId($request);
+        $this->getCurrentOrderId($request);
 
         return view('layout.index');
     }
 
-    private function getOrderId(Request $request)
+    private function getCurrentOrderId(Request $request)
     {
         if (!$request->session()->has('order_id')) {
             $request->session()->put('order_id', OrderController::createNewOrder());
@@ -29,7 +29,7 @@ class PageController extends Controller
 
     public function checkout(Request $request)
     {
-        $this->getOrderId($request);
+        $this->getCurrentOrderId($request);
 
         return view('layout.checkout');
     }
@@ -39,6 +39,13 @@ class PageController extends Controller
         $request->session()->forget('order_id');
 
         return redirect()->route('home');
+    }
+
+    public function orderHistory(Request $request)
+    {
+        $this->getCurrentOrderId($request);
+
+        return view('layout.history');
     }
 
 }

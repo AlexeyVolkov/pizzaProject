@@ -10,13 +10,20 @@
 
     </main>
 
-    <footer>
-        <div class="container text-center mt-2 mb-2">
-            <a href="{{ route('checkout') }}" class="btn btn-outline-primary">
-                <i class="fas fa-cash-register"></i>
-                &nbsp;
-                {{ __('Proceed to payment') }}
-            </a>
+    <footer class="text-muted">
+        <div class="container pt-2">
+            <p class="float-right">
+                <a href="{{ route('checkout') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-cash-register"></i>
+                    {{ __('Proceed to payment') }}
+                </a>
+            </p>
+            <p>
+                <a href="{{ route('order-history') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-history"></i>
+                    {{ __('Order history') }}
+                </a>
+            </p>
         </div>
     </footer>
 </x-app>

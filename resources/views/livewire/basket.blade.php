@@ -44,4 +44,10 @@
         <i class="fas fa-cash-register"></i>
         {{ __('Proceed to payment') }}
     </button>
+    <small class="text-muted">
+        <a href="{{ route('order-history') }}">
+            {{ __('Log in') }}
+        </a>
+        {{ __('to track orders.') }}
+    </small>
 </section>
