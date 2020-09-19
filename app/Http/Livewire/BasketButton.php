@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Order;
+use App\Http\Controllers\OrderController;
 use App\Models\OrderedPizza;
 use Livewire\Component;
 
@@ -12,7 +12,7 @@ class BasketButton extends Component
 
     public function render()
     {
-        $order_id = Order::find(session('order_id'))->id;
+        $order_id = OrderController::getBySessionId()->id;
 
         return view('livewire.basket-button', [
             'pizzaNumber' => OrderedPizza::where('order_id', $order_id)->count()

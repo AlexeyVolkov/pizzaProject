@@ -3,9 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Http\Controllers\OrderController;
-use App\Models\Order;
 use App\Services\PizzaRepository;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class CurrencySwitch extends Component

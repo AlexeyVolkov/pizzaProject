@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Http\Controllers\OrderController;
-use Livewire\Component;
 use App\Services\PizzaRepository;
+use Livewire\Component;
 
 class PizzaList extends Component
 {

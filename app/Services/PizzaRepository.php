@@ -13,7 +13,7 @@ class PizzaRepository
 {
     public function getPizzas()
     {
-        return app(Pizza::class)->get();
+        return app('getPizzas');
     }
 
     public function getPizzasPaginate(int $pages)
@@ -23,26 +23,26 @@ class PizzaRepository
 
     public function getPizzaSizes()
     {
-        return app(PizzaSize::class)->get();
+        return app('getPizzaSizes');
     }
 
     public function getPizzaToppings()
     {
-        return app(PizzaTopping::class)->get();
+        return app('getPizzaToppings');
     }
 
     public function getPayments()
     {
-        return app(Payment::class)->get();
+        return app('getPayments');
     }
 
     public function getCurrencies()
     {
-        return app(Currency::class)->get();
+        return app('getCurrencies');
     }
 
     public function getDeliveryMethods()
     {
-        return app(DeliveryMethod::class)->get();
+        return app('getDeliveryMethods');
     }
 }

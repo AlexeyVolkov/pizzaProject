@@ -20,6 +20,6 @@ class OrderController extends Controller
     public static function getBySessionId(): Order
     {
         $orderId = filter_var(session('order_id'), FILTER_SANITIZE_NUMBER_INT);
-        return Order::find($orderId);
+        return app('getOrders')->find($orderId);
     }
 }
