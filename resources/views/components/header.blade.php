@@ -6,12 +6,18 @@
     </div>
     <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container d-flex justify-content-between">
-            <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center">
+            <div class="col col-12 col-md-4 text-center text-md-left">
+            <a href="{{ route('home') }}" class="navbar-brand text-center text-md-right">
                 <i class="fas fa-pizza-slice mr-2"></i>
                 <strong>{{ $title }}</strong>
             </a>
-            <livewire:currency-switch/>
-            <livewire:basket-button/>
+            </div>
+            <div class="col col-12 col-md-1 text-center mb-2 mb-md-0">
+                <livewire:currency-switch/>
+            </div>
+            <div class="col col-12 col-md-4 text-center text-md-right">
+                <livewire:basket-button/>
+            </div>
         </div>
     </div>
 </header>

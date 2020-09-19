@@ -1,5 +1,5 @@
 <button
-        class="btn btn-secondary"
+        class="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#basket"

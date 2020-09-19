@@ -67,8 +67,8 @@
                 </div>
             </div>
             <div class="card-footer text-muted">
-                <div class="row align-items-end">
-                    <div class="col-sm-12 col-md-4 mb-2 text-center text-md-left">
+                <div class="row align-items-center">
+                    <div class="col-4 text-center text-md-left">
                         <strong>
                             <span class="currency">
                                 <i class="{{ $currencies->find($order->currency_id)->icon_class }}"></i>
@@ -76,10 +76,10 @@
                             {{ $price }}
                         </strong>
                     </div>
-                    <div class="col-sm-12 col-md-8">
+                    <div class="col-8">
                         <button
                                 type="submit"
-                                class="btn btn-outline-dark btn-sm btn-block"
+                                class="btn btn-outline-dark btn-sm btn-block pt-2 pb-2 pt-md-1 pb-md-1"
                                 title="Add pizza to shopping cart"
                         >
                             <i class="fas fa-cart-plus"></i>
