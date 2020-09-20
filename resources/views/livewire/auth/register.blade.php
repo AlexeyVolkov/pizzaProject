@@ -29,6 +29,7 @@
         <input wire:model.lazy="password" type="password" id="inputPassword" class="form-control"
                autocomplete="new-password"
                placeholder="{{ __('Password') }}"
+               min="6"
                required>
         @error('password')
         <div class="invalid-feedback">
