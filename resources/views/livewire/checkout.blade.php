@@ -8,7 +8,12 @@
             @foreach($orderedPizzas as $ordered_pizza)
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
-                        <h6 class="my-0">{{ $pizzas->find($ordered_pizza->pizza_id)->name }}</h6>
+                        <h6 class="my-0">
+                            {{ $pizzas->find($ordered_pizza->pizza_id)->name }}
+                            @if ($ordered_pizza->quantity > 1)
+                                <span class="badge badge-secondary ml-2">{{ $ordered_pizza->quantity }}</span>
+                            @endif
+                        </h6>
                         <small class="text-muted">
                             {{ $toppings->find($ordered_pizza->topping_id)->name }},
                             {{ $sizes->find($ordered_pizza->size_id)->name }}
