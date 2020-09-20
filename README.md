@@ -1,10 +1,13 @@
-## pizzaProject
+## pizzaProject [[LIVE]](https://hireme.link/)
+
+[![Build Status](https://travis-ci.org/AlexeyVolkov/pizzaProject.svg?branch=master)](https://travis-ci.org/AlexeyVolkov/pizzaProject)
 
 Technologies:
 - Laravel
 - [Livewire](https://laravel-livewire.com)
 - [Bootstrap](https://getbootstrap.com/)
-- SQLite
+- [Forge](https://forge.laravel.com/)
+- Travis CI
 
 
 ### Quick setup
@@ -27,16 +30,8 @@ npm audit fix
 envoy run app:pull
 
 php artisan key:generate
-php artisan migrate
+php artisan migrate --seed
 php artisan storage:link
 
 npm run dev
 ```
-
-### Website workflow
-
-1. Add Pizzas
-1. Click the basket icon
-1. Click Proceed to payment
-1. Fill in the form
-1. Click Finish checkout
