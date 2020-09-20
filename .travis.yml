@@ -1,0 +1,26 @@
+language: php
+
+php:
+  - 7.3
+  - 7.4
+
+os: linux
+
+before_script:
+  - cp .env.example .env
+  - composer install
+  - npm install
+  - npm audit fix
+  - envoy run app:pull
+  - php artisan key:generate
+  - php artisan migrate
+  - php artisan storage:link
+  - npm run dev
+  - php artisan config:clear
+  - php artisan cache:clear
+  - php artisan route:clear
+  - php artisan view:clear
+
+
+script:
+  - vendor/bin/phpunit
