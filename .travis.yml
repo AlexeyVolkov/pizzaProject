@@ -7,7 +7,7 @@ php:
 os: linux
 
 before_script:
-  - cp .env.example .env
+  - cp .env.travis .env
   - composer install
   - npm install
   - npm audit fix
