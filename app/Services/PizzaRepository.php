@@ -45,4 +45,9 @@ class PizzaRepository
     {
         return app('getDeliveryMethods');
     }
+
+    public function getOrderedPizzas()
+    {
+        return app('getOrderedPizzas');
+    }
 }

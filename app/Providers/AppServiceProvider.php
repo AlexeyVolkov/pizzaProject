@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Currency;
 use App\Models\DeliveryMethod;
 use App\Models\Order;
+use App\Models\OrderedPizza;
 use App\Models\Payment;
 use App\Models\Pizza;
 use App\Models\PizzaSize;
@@ -72,6 +73,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton('getOrders', function ($app) {
             return Order::get();
+        });
+
+        $this->app->singleton('getOrderedPizzas', function ($app) {
+            return OrderedPizza::get();
         });
     }
 

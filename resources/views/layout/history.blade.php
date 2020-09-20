@@ -1,5 +1,5 @@
 <x-app title="{{  __('Order history') }}">
-    @if (!Auth::check())
+    @guest
         <div class="container mt-2">
             <div class="row">
                 <p class="mt-5 mb-3 text-muted">
@@ -14,8 +14,8 @@
                 <livewire:auth.register/>
             </div>
         </div>
-    @endif
-    @if (Auth::check())
-        logged in
-    @endif
+    @endguest
+    @auth
+        <livewire:order-history/>
+    @endauth
 </x-app>
