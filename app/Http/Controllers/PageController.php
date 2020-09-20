@@ -9,6 +9,7 @@ use App\Models\Pizza;
 use App\Models\PizzaSize;
 use App\Models\PizzaTopping;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -46,6 +47,13 @@ class PageController extends Controller
         $this->getCurrentOrderId($request);
 
         return view('layout.history');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('home');
     }
 
 }

@@ -18,3 +18,4 @@ Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
 Route::get('/order-confirmed', [PageController::class, 'orderConfirmed'])->name('orderConfirmed');
 Route::get('/order-history', [PageController::class, 'orderHistory'])->name('order-history');
+Route::get('/logout', [PageController::class, 'logout'])->name('logout');

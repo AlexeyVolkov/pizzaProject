@@ -44,10 +44,19 @@
         <i class="fas fa-cash-register"></i>
         {{ __('Proceed to payment') }}
     </button>
-    <small class="text-muted">
-        <a href="{{ route('order-history') }}">
-            {{ __('Log in') }}
-        </a>
-        {{ __('to track orders.') }}
-    </small>
+    @auth
+        <small class="text-muted">
+            <a href="{{ route('order-history') }}">
+                {{ __('Order history') }}
+            </a>
+        </small>
+    @endauth
+    @guest
+        <small class="text-muted">
+            <a href="{{ route('order-history') }}">
+                {{ __('Log in') }}
+            </a>
+            {{ __('to track orders.') }}
+        </small>
+    @endguest
 </section>
