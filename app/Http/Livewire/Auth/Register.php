@@ -40,6 +40,6 @@ class Register extends Component
 
         auth()->login($user);
 
-        return redirect()->route('home');
+        return redirect()->route('orderConfirmed');
     }
 }
